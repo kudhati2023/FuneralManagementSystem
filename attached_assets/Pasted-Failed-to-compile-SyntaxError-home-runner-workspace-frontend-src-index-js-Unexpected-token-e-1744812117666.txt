@@ -1,0 +1,179 @@
+Failed to compile.
+
+SyntaxError: /home/runner/workspace/frontend/src/index.js: Unexpected token, expected "," (9:34)
+   7 |
+   8 | const root = ReactDOM.createRoot(
+>  9 |   document.getElementById('root') as HTMLElement
+     |                                   ^
+  10 | );
+  11 |
+  12 | root.render(
+    at parser.next (<anonymous>)
+    at normalizeFile.next (<anonymous>)
+    at run.next (<anonymous>)
+    at transform.next (<anonymous>)
+ERROR in ./src/index.js
+Module build failed (from ../node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/runner/workspace/frontend/src/index.js: Unexpected token, expected "," (9:34)
+
+   7 |
+   8 | const root = ReactDOM.createRoot(
+>  9 |   document.getElementById('root') as HTMLElement
+     |                                   ^
+  10 | );
+  11 |
+  12 | root.render(
+    at constructor (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:360:19)
+    at FlowParserMixin.raise (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:3338:19)
+    at FlowParserMixin.unexpected (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:3358:16)
+    at FlowParserMixin.expect (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:3668:12)
+    at FlowParserMixin.parseCallExpressionArguments (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10945:14)
+    at FlowParserMixin.parseCoverCallAndAsyncArrowHead (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10888:29)
+    at FlowParserMixin.parseSubscript (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10825:19)
+    at FlowParserMixin.parseSubscript (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5887:18)
+    at FlowParserMixin.parseSubscripts (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10798:19)
+    at FlowParserMixin.parseSubscripts (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5853:18)
+    at FlowParserMixin.parseExprSubscripts (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10789:17)
+    at FlowParserMixin.parseUpdate (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10770:21)
+    at FlowParserMixin.parseMaybeUnary (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10750:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10603:61)
+    at FlowParserMixin.parseExprOps (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10608:23)
+    at FlowParserMixin.parseMaybeConditional (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10585:23)
+    at FlowParserMixin.parseMaybeAssign (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10538:21)
+    at FlowParserMixin.parseMaybeAssign (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5786:18)
+    at /home/runner/workspace/node_modules/@babel/parser/lib/index.js:10507:39
+    at FlowParserMixin.allowInAnd (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12121:16)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:10507:17)
+    at FlowParserMixin.parseVar (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13048:91)
+    at FlowParserMixin.parseVarStatement (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12894:10)
+    at FlowParserMixin.parseStatementContent (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12515:23)
+    at FlowParserMixin.parseStatementLike (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12432:17)
+    at FlowParserMixin.parseStatementLike (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5153:24)
+    at FlowParserMixin.parseModuleItem (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12409:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12980:36)
+    at FlowParserMixin.parseBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12973:10)
+    at FlowParserMixin.parseProgram (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12306:10)
+    at FlowParserMixin.parseTopLevel (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12296:25)
+    at FlowParserMixin.parseTopLevel (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5922:28)
+    at FlowParserMixin.parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:14152:10)
+    at parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:14186:38)
+    at parser (/home/runner/workspace/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/runner/workspace/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/runner/workspace/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/runner/workspace/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/runner/workspace/node_modules/gensync/index.js:261:32)
+    at /home/runner/workspace/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/workspace/node_modules/gensync/index.js:223:11)
+    at /home/runner/workspace/node_modules/gensync/index.js:189:28
+    at /home/runner/workspace/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+    at /home/runner/workspace/node_modules/gensync/index.js:113:33
+    at step (/home/runner/workspace/node_modules/gensync/index.js:287:14)
+    at /home/runner/workspace/node_modules/gensync/index.js:273:13
+
+ERROR in [eslint] 
+src/index.js
+  Line 9:34:  Parsing error: Unexpected token, expected "," (9:34)
+
+webpack compiled with 2 errors
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+ERROR in src/components/calendar/FuneralSchedule.tsx:2:26
+TS2307: Cannot find module '@fullcalendar/react' or its corresponding type declarations.
+    1 | import React from 'react';
+  > 2 | import FullCalendar from '@fullcalendar/react';
+      |                          ^^^^^^^^^^^^^^^^^^^^^
+    3 | import dayGridPlugin from '@fullcalendar/daygrid';
+    4 | import { Paper, CircularProgress, Alert } from '@mui/material';
+    5 | import { useApiData } from '../../hooks/useApiData';
+
+ERROR in src/components/calendar/FuneralSchedule.tsx:3:27
+TS2307: Cannot find module '@fullcalendar/daygrid' or its corresponding type declarations.
+    1 | import React from 'react';
+    2 | import FullCalendar from '@fullcalendar/react';
+  > 3 | import dayGridPlugin from '@fullcalendar/daygrid';
+      |                           ^^^^^^^^^^^^^^^^^^^^^^^
+    4 | import { Paper, CircularProgress, Alert } from '@mui/material';
+    5 | import { useApiData } from '../../hooks/useApiData';
+    6 | import { scheduleAPI } from '../../services/api';
+
+ERROR in src/components/lists/BurialOrderList.tsx:15:31
+TS2307: Cannot find module 'axios' or its corresponding type declarations.
+    13 | import { useApiData } from '../../hooks/useApiData';
+    14 | import { burialAPI } from '../../services/api';
+  > 15 | import { AxiosResponse } from 'axios';
+       |                               ^^^^^^^
+    16 |
+    17 | interface BurialOrder {
+    18 |   id: number;
+
+ERROR in src/components/lists/BurialOrderList.tsx:52:30
+TS7006: Parameter 'order' implicitly has an 'any' type.
+    50 |         </TableHead>
+    51 |         <TableBody>
+  > 52 |           {burialOrders.map((order) => (
+       |                              ^^^^^
+    53 |             <TableRow key={order.id}>
+    54 |               <TableCell>{order.orderNumber}</TableCell>
+    55 |               <TableCell>{new Date(order.funeralDate).toLocaleDateString()}</TableCell>
+
+ERROR in src/components/lists/PaymentList.tsx:14:10
+TS2614: Module '"../../services/api"' has no exported member 'paymentAPI'. Did you mean to use 'import paymentAPI from "../../services/api"' instead?
+    12 | } from '@mui/material';
+    13 | import { useApiData } from '../../hooks/useApiData';
+  > 14 | import { paymentAPI } from '../../services/api';
+       |          ^^^^^^^^^^
+    15 |
+    16 | interface Payment {
+    17 |   id: number;
+
+ERROR in src/components/lists/PlotList.tsx:14:10
+TS2614: Module '"../../services/api"' has no exported member 'plotAPI'. Did you mean to use 'import plotAPI from "../../services/api"' instead?
+    12 | } from '@mui/material';
+    13 | import { useApiData } from '../../hooks/useApiData';
+  > 14 | import { plotAPI } from '../../services/api';
+       |          ^^^^^^^
+    15 |
+    16 | interface Plot {
+    17 |   id: number;
+
+ERROR in src/components/scheduling/DriverSchedule.tsx:25:88
+TS2339: Property 'getDriverSchedule' does not exist on type '{ getFuneralSchedule: () => Promise<AxiosResponse<ApiResponse<FuneralEvent[]>>>; }'.
+    23 |
+    24 | const DriverSchedule: React.FC = () => {
+  > 25 |   const { data: schedules, loading, error } = useApiData<DriverSchedule[]>(scheduleAPI.getDriverSchedule);
+       |                                                                                        ^^^^^^^^^^^^^^^^^
+    26 |
+    27 |   if (loading) return <CircularProgress />;
+    28 |   if (error) return <Alert severity="error">{error}</Alert>;
+
+ERROR in src/hooks/useApiData.ts:2:31
+TS2307: Cannot find module 'axios' or its corresponding type declarations.
+    1 | import { useState, useEffect } from 'react';
+  > 2 | import { AxiosResponse } from 'axios';
+      |                               ^^^^^^^
+    3 |
+    4 | interface UseApiDataResult<T> {
+    5 |   data: T | null;
+
+ERROR in src/services/api.ts:2:70
+TS2307: Cannot find module 'axios' or its corresponding type declarations.
+    1 |
+  > 2 | import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
+      |                                                                      ^^^^^^^
+    3 | import { BurialOrder, FuneralEvent, ApiResponse } from '../types';
+    4 |
+    5 | // API response types
+
+ERROR in src/services/api.ts:3:56
+TS2307: Cannot find module '../types' or its corresponding type declarations.
+    1 |
+    2 | import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
+  > 3 | import { BurialOrder, FuneralEvent, ApiResponse } from '../types';
+      |                                                        ^^^^^^^^^^
+    4 |
+    5 | // API response types
+    6 | interface ApiResponse<T> {

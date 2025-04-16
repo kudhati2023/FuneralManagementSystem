@@ -1,0 +1,8 @@
+modules = ["nodejs-20", "python-3.12", "web", "python-base-3.13", "python-base-3.12"]
+run = "node index.js"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "node index.js"]

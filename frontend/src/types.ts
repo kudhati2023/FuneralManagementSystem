@@ -30,3 +30,17 @@ export interface DriverSchedule {
   route: string;
   status: string;
 }
+
+export interface Payment {
+  id: number;
+  amount: number;
+  date: string;
+  status: string;
+}
+
+export interface Plot {
+  id: number;
+  location: string;
+  status: string;
+  price: number;
+}

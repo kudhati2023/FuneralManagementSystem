@@ -8,7 +8,7 @@ interface ApiResponse<T> {
   message?: string;
 }
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'http://0.0.0.0:8000/api', //Updated Base URL
   headers: {
     'Content-Type': 'application/json',
   },

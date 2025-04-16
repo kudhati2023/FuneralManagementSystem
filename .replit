@@ -8,12 +8,25 @@ channel = "stable-24_05"
 run = ["sh", "-c", "node index.js"]
 
 [workflows]
-runButton = "Django Backend"
+runButton = "Full Stack"
 
 [[workflows.workflow]]
 name = "Django Backend"
 author = 41591557
 mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python manage.py runserver 0.0.0.0:8000"
+
+[[workflows.workflow]]
+name = "Full Stack"
+author = 41591557
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && npm start"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"

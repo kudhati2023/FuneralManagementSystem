@@ -86,10 +86,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'kuwadzana',
+        'USER': 'admin',
+        'PASSWORD': 'Hacker14code$',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+INSTALLED_APPS += ['corsheaders']
+MIDDLEWARE.insert(2, 'corsheaders.middleware.CorsMiddleware')
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5000",
+]
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Password validation

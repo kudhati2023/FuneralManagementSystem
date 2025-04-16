@@ -50,6 +50,18 @@ export const burialAPI = {
 export const scheduleAPI = {
   getFuneralSchedule: (): Promise<AxiosResponse<ApiResponse<FuneralEvent[]>>> => 
     api.get('/scheduling/schedule/'),
+  getDriverSchedule: (): Promise<AxiosResponse<ApiResponse<DriverSchedule[]>>> =>
+    api.get('/scheduling/driver-schedule/'),
+};
+
+export const paymentAPI = {
+  getPayments: (): Promise<AxiosResponse<ApiResponse<Payment[]>>> =>
+    api.get('/payments/'),
+};
+
+export const plotAPI = {
+  getPlots: (): Promise<AxiosResponse<ApiResponse<Plot[]>>> =>
+    api.get('/cemetery/plots/'),
 };
 
 export default api;

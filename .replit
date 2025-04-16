@@ -40,7 +40,7 @@ mode = "parallel"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd frontend && npm run start"
+args = "cd frontend && npm run build && serve -s build"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"

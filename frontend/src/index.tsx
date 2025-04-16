@@ -1,9 +1,11 @@
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CircularProgress } from '@mui/material';
+
+const App = React.lazy(() => import('./App'));
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,8 +13,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={<CircularProgress />}>
+      <App />
+    </Suspense>
   </React.StrictMode>
 );
 
-reportWebVitals(console.log);
+reportWebVitals();

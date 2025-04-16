@@ -1,0 +1,22 @@
+import React from 'react';
+import Debug from './components/Debug';
+
+const App: React.FC = () => {
+  const sampleData = {
+    name: "John Doe",
+    age: 30,
+    details: {
+      email: "john@example.com",
+      address: "123 Main St"
+    }
+  };
+
+  return (
+    <div>
+      <h1>Debug Example</h1>
+      <Debug data={sampleData} title="User Data" />
+    </div>
+  );
+};
+
+export default App;

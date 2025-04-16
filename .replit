@@ -5,10 +5,11 @@ run = "node index.js"
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "node index.js"]
+run = ["sh", "-c", "python manage.py runserver 0.0.0.0:5000"]
+build = ["sh", "-c", "cd frontend && npm run build"]
 
 [workflows]
-runButton = "Full Stack"
+runButton = "Full Stack Dev"
 
 [[workflows.workflow]]
 name = "Django Backend"
@@ -27,6 +28,19 @@ mode = "parallel"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd frontend && npm start"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python manage.py runserver 0.0.0.0:8000"
+
+[[workflows.workflow]]
+name = "Full Stack Dev"
+author = 41591557
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && npm run start"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"

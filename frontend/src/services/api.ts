@@ -8,7 +8,9 @@ interface ApiResponse<T> {
   message?: string;
 }
 const api = axios.create({
-  baseURL: 'http://0.0.0.0:8000/api', //Updated Base URL
+  baseURL: process.env.NODE_ENV === 'production' 
+    ? '/api'  // Production URL
+    : 'http://0.0.0.0:8000/api', // Development URL //Updated Base URL
   headers: {
     'Content-Type': 'application/json',
   },

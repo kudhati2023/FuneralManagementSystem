@@ -9,7 +9,7 @@ run = ["sh", "-c", "python manage.py runserver 0.0.0.0:5000"]
 build = ["sh", "-c", "cd frontend && npm run build"]
 
 [workflows]
-runButton = "Full Stack Dev"
+runButton = "Frontend Dev"
 
 [[workflows.workflow]]
 name = "Django Backend"
@@ -45,6 +45,15 @@ args = "cd frontend && npm run build && serve -s build"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python manage.py runserver 0.0.0.0:8000"
+
+[[workflows.workflow]]
+name = "Frontend Dev"
+author = 41591557
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && npm install && npm start"
 
 [[ports]]
 localPort = 3000

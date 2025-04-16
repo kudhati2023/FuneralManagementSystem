@@ -1,20 +1,19 @@
+
 import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Paper, CircularProgress, Alert } from '@mui/material';
 import { useApiData } from '../../hooks/useApiData';
 import { scheduleAPI } from '../../services/api';
-
-interface FuneralEvent {
-  id: number;
-  title: string;
-  start: string;
-  end: string;
-  location: string;
-}
+import { FuneralEvent } from '../../types';
 
 const FuneralSchedule: React.FC = () => {
-  const { data: events = [], loading, error } = useApiData(scheduleAPI.getFuneralSchedule);
+  const { data, loading, error } = useApiData<FuneralEvent[]>(
+    async () => {
+      const response = await scheduleAPI.getFuneralSchedule();
+      return response.data.data;
+    }
+  );
 
   if (loading) return <CircularProgress />;
   if (error) return <Alert severity="error">{error}</Alert>;
@@ -24,7 +23,7 @@ const FuneralSchedule: React.FC = () => {
       <FullCalendar
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
-        events={events}
+        events={data || []}
         height="auto"
       />
     </Paper>

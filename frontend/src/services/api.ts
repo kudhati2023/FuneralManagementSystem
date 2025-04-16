@@ -1,9 +1,8 @@
 
-import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
-import { BurialOrder, FuneralEvent, ApiResponse } from '../types';
+import axios, { InternalAxiosRequestConfig } from 'axios';
+import { BurialOrder, FuneralEvent, DriverSchedule, Payment, Plot } from '../types';
 
-// API response types
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
   data: T;
   status: number;
   message?: string;
@@ -11,29 +10,27 @@ interface ApiResponse<T> {
 
 const api = axios.create({
   baseURL: process.env.NODE_ENV === 'production' 
-    ? '/api'  // Production URL
-    : 'http://0.0.0.0:8000/api', // Development URL
+    ? '/api'
+    : 'http://0.0.0.0:8000/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Request interceptor
 api.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (error: AxiosError) => Promise.reject(error)
+  (error) => Promise.reject(error)
 );
 
-// Response interceptor
 api.interceptors.response.use(
-  (response: AxiosResponse) => response,
-  async (error: AxiosError) => {
+  (response) => response,
+  async (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       window.location.href = '/login';
@@ -43,25 +40,20 @@ api.interceptors.response.use(
 );
 
 export const burialAPI = {
-  getBurialOrders: (): Promise<AxiosResponse<ApiResponse<BurialOrder[]>>> => 
-    api.get('/burial/orders/'),
+  getBurialOrders: () => api.get<ApiResponse<BurialOrder[]>>('/burial/orders/'),
 };
 
 export const scheduleAPI = {
-  getFuneralSchedule: (): Promise<AxiosResponse<ApiResponse<FuneralEvent[]>>> => 
-    api.get('/scheduling/schedule/'),
-  getDriverSchedule: (): Promise<AxiosResponse<ApiResponse<DriverSchedule[]>>> =>
-    api.get('/scheduling/driver-schedule/'),
+  getFuneralSchedule: () => api.get<ApiResponse<FuneralEvent[]>>('/scheduling/schedule/'),
+  getDriverSchedule: () => api.get<ApiResponse<DriverSchedule[]>>('/scheduling/driver-schedule/'),
 };
 
 export const paymentAPI = {
-  getPayments: (): Promise<AxiosResponse<ApiResponse<Payment[]>>> =>
-    api.get('/payments/'),
+  getPayments: () => api.get<ApiResponse<Payment[]>>('/payments/'),
 };
 
 export const plotAPI = {
-  getPlots: (): Promise<AxiosResponse<ApiResponse<Plot[]>>> =>
-    api.get('/cemetery/plots/'),
+  getPlots: () => api.get<ApiResponse<Plot[]>>('/cemetery/plots/'),
 };
 
 export default api;

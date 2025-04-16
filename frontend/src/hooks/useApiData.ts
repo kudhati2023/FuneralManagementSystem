@@ -1,25 +1,20 @@
-import { useState, useEffect } from 'react';
-import { AxiosResponse } from 'axios';
 
-interface UseApiDataResult<T> {
-  data: T | null;
-  loading: boolean;
-  error: string | null;
-}
+import { useState, useEffect } from 'react';
 
 export function useApiData<T>(
-  fetchFunction: () => Promise<T>
-): UseApiDataResult<T> {
+  fetchFunction: () => Promise<T>,
+  deps: any[] = []
+) {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetchFunction();
-        setData(response);
+        const result = await fetchFunction();
+        setData(result);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
@@ -29,7 +24,7 @@ export function useApiData<T>(
     };
 
     fetchData();
-  }, [fetchFunction]);
+  }, deps);
 
   return { data, loading, error };
 }

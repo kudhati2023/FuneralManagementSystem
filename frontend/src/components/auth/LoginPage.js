@@ -1,17 +1,26 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Box, TextField, Button, Typography, Paper } from '@mui/material';
 
-const LoginPage = () => {
-  const [credentials, setCredentials] = useState({ username: '', password: '' });
-  const { login } = useAuth();
-  const navigate = useNavigate();
+interface LoginFormData {
+  username: string;
+  password: string;
+}
 
-  const handleSubmit = async (e) => {
+const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [formData, setFormData] = useState<LoginFormData>({
+    username: '',
+    password: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(credentials);
+      await login(formData.username, formData.password);
       navigate('/staff');
     } catch (error) {
       console.error('Login failed:', error);
@@ -19,16 +28,9 @@ const LoginPage = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-      }}
-    >
-      <Paper sx={{ p: 4, maxWidth: 400, width: '100%' }}>
-        <Typography variant="h5" gutterBottom>
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <Paper elevation={3} sx={{ p: 4, maxWidth: 400 }}>
+        <Typography variant="h5" component="h1" gutterBottom>
           Login
         </Typography>
         <form onSubmit={handleSubmit}>
@@ -36,26 +38,22 @@ const LoginPage = () => {
             fullWidth
             margin="normal"
             label="Username"
-            value={credentials.username}
-            onChange={(e) =>
-              setCredentials({ ...credentials, username: e.target.value })
-            }
+            value={formData.username}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
           />
           <TextField
             fullWidth
             margin="normal"
-            label="Password"
             type="password"
-            value={credentials.password}
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value })
-            }
+            label="Password"
+            value={formData.password}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           />
           <Button
-            type="submit"
+            fullWidth
             variant="contained"
             color="primary"
-            fullWidth
+            type="submit"
             sx={{ mt: 2 }}
           >
             Login

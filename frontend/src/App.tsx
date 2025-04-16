@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
@@ -36,9 +37,9 @@ const App: React.FC = () => {
               <Route 
                 path="/staff/*" 
                 element={
-                <ProtectedRoute role="staff">
-                  <StaffDashboard />
-                </ProtectedRoute>
+                  <ProtectedRoute role="staff">
+                    <StaffDashboard />
+                  </ProtectedRoute>
                 }
               >
                 <Route path="deceased" element={<DeceasedRecordList />} />
@@ -53,9 +54,9 @@ const App: React.FC = () => {
               <Route 
                 path="/family/*" 
                 element={
-                <ProtectedRoute role="family">
-                  <FamilyDashboard />
-                </ProtectedRoute>
+                  <ProtectedRoute role="family">
+                    <FamilyDashboard />
+                  </ProtectedRoute>
                 }
               />
               {/* Catch all route */}

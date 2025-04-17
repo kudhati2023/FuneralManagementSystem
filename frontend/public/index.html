@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +8,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <a href="#" data-page="dashboard">Dashboard</a>
-        <a href="#" data-page="mortuary">Records</a>
-        <a href="#" data-page="schedule">Schedule</a>
-        <a href="#" data-page="payments">Payments</a>
-    </nav>
-    <div id="main-content"></div>
+    <div id="app">
+        <nav id="main-nav"></nav>
+        <main id="main-content">
+            <div id="dashboard"></div>
+            <div id="calendar"></div>
+            <div id="lists"></div>
+        </main>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

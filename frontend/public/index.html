@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +12,22 @@
         <div class="nav-brand">Funeral Management</div>
         <div class="nav-links">
             <a href="#" data-page="dashboard">Dashboard</a>
-            <a href="#" data-page="records">Records</a>
+            <a href="#" data-page="records">Mortuary Records</a>
             <a href="#" data-page="schedule">Schedule</a>
             <a href="#" data-page="payments">Payments</a>
+            <a href="#" data-page="cemetery">Cemetery</a>
+            <a href="#" data-page="drivers">Drivers</a>
         </div>
     </nav>
-    <main id="main-content"></main>
+    <main id="main-content">
+        <div id="dashboard-section" class="content-section">
+            <h1>Dashboard</h1>
+            <div class="dashboard-grid">
+                <div class="card" id="recent-records"></div>
+                <div class="card" id="upcoming-schedule"></div>
+            </div>
+        </div>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>

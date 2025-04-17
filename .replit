@@ -9,7 +9,7 @@ run = ["sh", "-c", "python manage.py runserver 0.0.0.0:5000"]
 build = ["sh", "-c", "cd frontend && npm run build"]
 
 [workflows]
-runButton = "Frontend Dev"
+runButton = "Full Stack Dev"
 
 [[workflows.workflow]]
 name = "Django Backend"
@@ -40,7 +40,7 @@ mode = "parallel"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd frontend && npm run build && serve -s build"
+args = "cd frontend && python -m http.server 3000"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"

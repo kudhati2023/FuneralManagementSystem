@@ -1,128 +1,65 @@
+// API endpoints
+const API = {
+    MORTUARY: '/api/mortuary/records/',
+    SCHEDULE: '/api/scheduling/schedule/',
+    PAYMENTS: '/api/payments/'
+};
 
-class FuneralManagementApp {
+class FuneralApp {
     constructor() {
-        this.mainContent = document.getElementById('main-content');
+        this.initializeApp();
+    }
+
+    async initializeApp() {
         this.setupNavigation();
-        this.loadDashboard();
-        this.baseUrl = 'http://0.0.0.0:8000/api';
+        await this.loadDashboard();
     }
 
     setupNavigation() {
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', (e) => {
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', async (e) => {
                 e.preventDefault();
-                const page = e.target.dataset.page;
-                this.loadPage(page);
+                await this.loadPage(e.target.dataset.page);
             });
         });
     }
 
-    async fetchData(endpoint) {
+    async fetchData(url) {
         try {
-            const response = await fetch(`${this.baseUrl}/${endpoint}/`);
+            const response = await fetch(url);
             return await response.json();
         } catch (error) {
             console.error('Error fetching data:', error);
-            return null;
+            return [];
         }
     }
 
     async loadPage(page) {
-        switch(page) {
-            case 'dashboard':
-                await this.loadDashboard();
-                break;
-            case 'records':
-                await this.loadMortuaryRecords();
-                break;
-            case 'schedule':
-                await this.loadSchedule();
-                break;
-            case 'payments':
-                await this.loadPayments();
-                break;
-            case 'cemetery':
-                await this.loadCemetery();
-                break;
-            case 'drivers':
-                await this.loadDrivers();
-                break;
-        }
-    }
+        const contentDiv = document.getElementById('main-content');
+        const data = await this.fetchData(API[page.toUpperCase()] || '/api/dashboard');
 
-    async loadDashboard() {
-        const records = await this.fetchData('mortuary/records');
-        const schedule = await this.fetchData('scheduling/schedule');
-        
-        this.mainContent.innerHTML = `
-            <h1>Dashboard</h1>
-            <div class="dashboard-grid">
-                <div class="card">
-                    <h2>Recent Records</h2>
-                    <div id="recent-records">
-                        ${this.renderRecordsList(records)}
-                    </div>
-                </div>
-                <div class="card">
-                    <h2>Upcoming Schedule</h2>
-                    <div id="upcoming-schedule">
-                        ${this.renderScheduleList(schedule)}
-                    </div>
-                </div>
+        contentDiv.innerHTML = `
+            <h1>${page.charAt(0).toUpperCase() + page.slice(1)}</h1>
+            <div class="data-grid">
+                ${this.renderData(data, page)}
             </div>
         `;
     }
 
-    renderRecordsList(records) {
-        if (!records) return '<p>No records found</p>';
-        return `
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${records.map(record => `
-                        <tr>
-                            <td>${record.name}</td>
-                            <td>${record.date}</td>
-                            <td>${record.status}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        `;
+    renderData(data, type) {
+        return data.map(item => `
+            <div class="card">
+                <h3>${item.name || item.title || `Record #${item.id}`}</h3>
+                <p>${item.description || item.status || item.date}</p>
+                <button onclick="app.viewDetails('${type}', ${item.id})">View</button>
+            </div>
+        `).join('');
     }
 
-    renderScheduleList(schedule) {
-        if (!schedule) return '<p>No scheduled events</p>';
-        return `
-            <table>
-                <thead>
-                    <tr>
-                        <th>Event</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${schedule.map(event => `
-                        <tr>
-                            <td>${event.title}</td>
-                            <td>${event.date}</td>
-                            <td>${event.location}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        `;
+    async viewDetails(type, id) {
+        const data = await this.fetchData(`${API[type.toUpperCase()]}${id}`);
+        alert(JSON.stringify(data, null, 2));
     }
 }
 
-// Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    const app = new FuneralManagementApp();
-});
+const app = new FuneralApp();
